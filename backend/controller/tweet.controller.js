@@ -88,10 +88,35 @@ const writeComment = async (req, res) => {
         res.status(500).json({ error: "Internal server error" });
     }
 }
+
+
+const writereply = async (req, res) => {
+    try {
+
+
+        const tweetId = req.params.Id;
+        const { text, commentId } = req.body;
+        if (!text) return res.status(400).json({ error: "Reply text is required." });
+        const tweet = await tweetModel.findById(tweetId);
+        if (!tweet) return res.status(404).json({ error: "Tweet not found." });
+        const comment = tweet.comment.id(commentId);
+        if (!comment) return res.status(404).json({ error: "Comment not found." });
+        comment.replies.push({
+            text: text,
+            author: req.user._id,
+        })
+        await tweet.save();
+        res.status(200).json({ message: "Reply added", tweet });
+    } catch (error) {
+        console.error("Add Reply Error:", error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+}
 module.exports = {
     createTweetHandler,
     getAllTweets,
     deleteTweet,
     getSingleTweet,
-    writeComment
+    writeComment,
+    writereply
 }
