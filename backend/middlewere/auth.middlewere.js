@@ -11,9 +11,9 @@ async function HandleResctricUser(req, res, next) {
             error: "please login and try again",
         })
         const id = getUser(token);
-        const data = await userModel({
-            _id: id._id
-        })
+        const data = await userModel.findById(id.id)
+
+
         if (!data) return res.status(401).json({
             error: "please login and try again",
         })

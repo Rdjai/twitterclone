@@ -1,5 +1,6 @@
 const { default: mongoose } = require("mongoose");
 const mongo = require("mongoose");
+const commentSchema = require("./comment.model");
 
 const TweetModel = new mongo.Schema({
     author: { type: mongoose.Schema.Types.ObjectId, ref: "Users", required: true },
@@ -7,6 +8,7 @@ const TweetModel = new mongo.Schema({
         type: String,
         required: true,
     },
+    comment: [commentSchema],
     mediaUrl: {
         type: String,
     },

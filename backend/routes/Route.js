@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 //user route controller
-const { createAccount, userLogin } = require("../controller/auth.controller");
+const { createAccount, userLogin, myprofile } = require("../controller/auth.controller");
 const { getUserByUsername,
     getAllUsers,
     getUserById,
@@ -15,7 +15,7 @@ const { getUserByUsername,
 
 } = require("../controller/user.controller");
 
-const { createTweetHandler, getAllTweets, deleteTweet } = require('../controller/tweet.controller')
+const { createTweetHandler, getAllTweets, deleteTweet, getSingleTweet, writeComment } = require('../controller/tweet.controller')
 const { HandleResctricUser } = require("../middlewere/auth.middlewere");
 const upload = require("../middlewere/upload");
 
@@ -23,6 +23,7 @@ const upload = require("../middlewere/upload");
 //auth routes
 router.post("/register", createAccount);
 router.post("/login", userLogin)
+router.get("/me", HandleResctricUser, myprofile)
 
 // user routes
 
@@ -42,6 +43,9 @@ router.post("/find/users", HandleResctricUser, getUsersbyNameHandler)
 
 router.post("/tweet/write", HandleResctricUser, upload.single('media'), createTweetHandler)
 router.get("/tweet/alltweet", HandleResctricUser, getAllTweets);
-router.delete("tweet/delete", HandleResctricUser, deleteTweet)
+router.delete("/tweet/delete", HandleResctricUser, deleteTweet)
+router.post("/tweet/:Id/comments", HandleResctricUser, writeComment)
+router.get("/tweet/:id", getSingleTweet)
+
 
 module.exports = router;

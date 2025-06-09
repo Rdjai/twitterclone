@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs');
 const sendWelcomeEmail = require("../utils/sendemail")
 
 const userModel = require("../models/user.model");
+const tweetModel = require("../models/tweet.model")
 const { setuser } = require('../service/jwt');
 
 const createAccount = async (req, res) => {
@@ -71,10 +72,24 @@ const userLogin = async (req, res) => {
 
 
 async function myprofile(req, res) {
+    try {
+        console.log("user req _id", req.user._id);
 
+        const userinfo = await userModel.find(req.user._id);
+        const alltweet = await tweetModel.find({ author: req.user._id }).populate('author', 'userName').sort({ createdAt: -1 });
+        console.log(userinfo, alltweet);
+        return res.status(201).json({
+            user: userinfo,
+            tweets: alltweet
+        })
+    } catch (error) {
+        console.error("Error during registration:", error);
+        res.status(500).json({ error: "Internal server error" });
+    }
 }
 
 module.exports = {
     createAccount,
-    userLogin
+    userLogin,
+    myprofile
 }

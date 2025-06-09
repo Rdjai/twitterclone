@@ -1,4 +1,5 @@
-const tweetModel = require("../models/tweet.model")
+const tweetModel = require("../models/tweet.model.js");
+const userModel = require("../models/user.model.js");
 
 const createTweetHandler = async (req, res) => {
     try {
@@ -23,7 +24,6 @@ const createTweetHandler = async (req, res) => {
 
 const getAllTweets = async (req, res) => {
     try {
-        console.log("user req _id", req.user);
         const tweets = await tweetModel
             .find({ author: req.user._id })
             .populate('author', 'userName')
@@ -38,7 +38,8 @@ const getAllTweets = async (req, res) => {
 
 const deleteTweet = async (req, res) => {
     try {
-        const tweetId = req.body.id;
+        const tweetId = req.body;
+        console.log("tweet id ", tweetId);
         const userId = req.user.id;
         const tweet = await tweetModel.findById(tweetId);
         if (!tweet) return res.status(404).json({ msg: "Tweet not found" });
@@ -51,8 +52,46 @@ const deleteTweet = async (req, res) => {
         res.status(500).json({ msg: "Internal Server Error" });
     }
 }
+
+async function getSingleTweet(req, res) {
+    try {
+        const tweetid = req.params;
+        console.log("here is the params", req.params.id);
+        const tweet = await tweetModel.findById(req.params.id)
+        if (!tweet) return res.status(404).json({
+            err: "tweet does not exits"
+        })
+        const user = await userModel.findById(tweet.author);
+        console.log(user);
+        return res.status(201).json(
+            tweet
+        )
+    } catch (error) {
+
+    }
+}
+
+const writeComment = async (req, res) => {
+    try {
+        const tweetId = req.params.Id;
+        const { text } = req.body;
+        console.log("here is the parameter debug", req.params.Id);
+        if (!text) return res.status(400).json({ error: "Comment text is required." });
+        const tweet = await tweetModel.findById(tweetId);
+
+        if (!tweet) return res.status(404).json({ error: "Tweet not found." });
+        tweet.comment.push({ text: text, author: req.user.id })
+        await tweet.save();
+        res.status(200).json({ message: "Comment added", tweet });
+    } catch (error) {
+        console.error("Add Comment Error:", error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+}
 module.exports = {
     createTweetHandler,
     getAllTweets,
-    deleteTweet
+    deleteTweet,
+    getSingleTweet,
+    writeComment
 }
