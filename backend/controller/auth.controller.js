@@ -1,5 +1,5 @@
 const bcrypt = require('bcryptjs');
-
+const sendWelcomeEmail = require("../utils/sendemail")
 
 const userModel = require("../models/user.model");
 const { setuser } = require('../service/jwt');
@@ -35,6 +35,7 @@ const createAccount = async (req, res) => {
             password: hashedPassword
         })
         await data.save();
+        await sendWelcomeEmail(email, Name);
         return res.status(200).json({
             message: "User registered successfully", data
         })

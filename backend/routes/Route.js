@@ -15,7 +15,7 @@ const { getUserByUsername,
 
 } = require("../controller/user.controller");
 
-const { createTweetHandler, getAllTweets } = require('../controller/tweet.controller')
+const { createTweetHandler, getAllTweets, deleteTweet } = require('../controller/tweet.controller')
 const { HandleResctricUser } = require("../middlewere/auth.middlewere");
 const upload = require("../middlewere/upload");
 
@@ -42,5 +42,6 @@ router.post("/find/users", HandleResctricUser, getUsersbyNameHandler)
 
 router.post("/tweet/write", HandleResctricUser, upload.single('media'), createTweetHandler)
 router.get("/tweet/alltweet", HandleResctricUser, getAllTweets);
+router.delete("tweet/delete", HandleResctricUser, deleteTweet)
 
 module.exports = router;

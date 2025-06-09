@@ -24,17 +24,35 @@ const createTweetHandler = async (req, res) => {
 const getAllTweets = async (req, res) => {
     try {
         console.log("user req _id", req.user);
-        const tweets = await tweetModel.find().populate('author', 'userName').sort({ createdAt: -1 });
-        res.status(200).json({
-            tweets
-        })
-
+        const tweets = await tweetModel
+            .find({ author: req.user._id })
+            .populate('author', 'userName')
+            .sort({ createdAt: -1 });
+        res.status(200).json({ tweets });
     } catch (error) {
         console.error("Get Tweets Error:", error);
         res.status(500).json({ message: "Internal server error" });
     }
 }
+
+
+const deleteTweet = async (req, res) => {
+    try {
+        const tweetId = req.body.id;
+        const userId = req.user.id;
+        const tweet = await tweetModel.findById(tweetId);
+        if (!tweet) return res.status(404).json({ msg: "Tweet not found" });
+        if (tweet.author.toString() !== userId) return res.status(403).json({ msg: "You are not authorized to delete this tweet" });
+        await tweetModel.findByIdAndDelete(tweetId)
+        res.status(200).json({ msg: "Tweet deleted successfully" });
+
+    } catch (error) {
+        console.error("❌ Error deleting tweet:", error.message);
+        res.status(500).json({ msg: "Internal Server Error" });
+    }
+}
 module.exports = {
     createTweetHandler,
-    getAllTweets
+    getAllTweets,
+    deleteTweet
 }
