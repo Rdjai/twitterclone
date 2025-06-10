@@ -56,15 +56,21 @@ const deleteTweet = async (req, res) => {
 async function getSingleTweet(req, res) {
     try {
         const tweetid = req.params;
+
         console.log("here is the params", req.params.id);
         const tweet = await tweetModel.findById(req.params.id)
+
         if (!tweet) return res.status(404).json({
             err: "tweet does not exits"
         })
-        const user = await userModel.findById(tweet.author);
+
+        const user = await userModel.findById(tweet.author).select("Name userName profilePic email")
         console.log(user);
         return res.status(201).json(
-            tweet
+            {
+                "tweet": tweet,
+                "user": user
+            }
         )
     } catch (error) {
 

@@ -199,6 +199,16 @@ const getUserProfile = async (req, res) => {
         res.status(500).json({ msg: "Server error", error });
     }
 }
+
+//update profile 
+
+// const updateprofile=async(req, res)=>{
+//     try {
+//         const
+//     } catch (error) {
+
+//     }
+// }
 module.exports = {
     getAllUsers,
     getUserByUsername,
