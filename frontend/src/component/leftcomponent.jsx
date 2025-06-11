@@ -1,6 +1,5 @@
 import React from 'react'
 import { House, Search, Bell, Mail, Users, User, MoreHorizontalIcon, X } from 'lucide-react'
-import logo from '../assets/logo.png'
 const LeftComponent = () => {
     return (
         <div className='leftcomponent'>
