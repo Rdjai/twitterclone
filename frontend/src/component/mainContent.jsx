@@ -1,5 +1,7 @@
 import React from 'react'
 import Navbar from './Navbaar'
+import TweetComponent from './tweetcomponent'
+
 
 const MainContent = () => {
     return (
@@ -27,6 +29,7 @@ const MainContent = () => {
                 </p>
                 <p>Final line of content.</p>
             </div>
+            <TweetComponent />
         </div>
     )
 }

@@ -278,3 +278,46 @@ li {
     /* Reduce padding for smaller screens */
   }
 }
+
+
+.tweetComponent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+  width: 30%;
+
+
+}
+
+.tweetComponent img {
+  border-radius: 90%;
+  margin: 12px;
+}
+
+.username {
+  display: flex;
+  font-size: 18px;
+}
+
+
+/* tweet component and card css  */
+.tweet-card {
+
+  flex: 1;
+  min-width: 280px;
+  background-color: #3b3b3b;
+  padding: 25px;
+  border-radius: 8px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-height: 300px;
+  overflow-y: auto;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 12px;
+}
