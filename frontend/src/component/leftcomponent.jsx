@@ -2,12 +2,12 @@ import React from 'react'
 import { House, Search, Bell, Mail, Users, User, MoreHorizontalIcon, X } from 'lucide-react'
 const LeftComponent = () => {
     return (
-        <div className='leftcomponent'>
-            <div className="icon">
+        <div className='leftcomponent bg-black border-r-[1px]'>
+            <div className="icon bg-black">
                 {/* <img src={logo} alt="" srcset="" height={50} /> */}
                 Tweens <br />
             </div>
-            <div className="menu">
+            <div className="menu bg-black">
                 <ul >
                     <li className='menuitems'>
                         <House />
@@ -41,7 +41,11 @@ const LeftComponent = () => {
                         <p>Post</p>
                     </div>
                     <div className="profilecard">
-                        <img src="https://pbs.twimg.com/profile_images/1834111746761777152/AnOcYg2N_400x400.jpg" alt="" srcset="" height={50} className='profileicon' />
+                        <img
+                            src="https://pbs.twimg.com/profile_images/1834111746761777152/AnOcYg2N_400x400.jpg"
+                            alt="Profile"
+                            className="h-[50px] w-[50px] rounded-full object-cover profileicon"
+                        />
                         <div className="details">
                             <p>Rdj Kashyap</p>
                             <h6>@RdKashyap</h6>

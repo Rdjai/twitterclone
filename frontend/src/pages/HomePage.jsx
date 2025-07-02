@@ -17,7 +17,7 @@ const HomePage = () => {
     }, [])
 
     return (
-        <div className='homepage'>
+        <div className='homepage bg-black'>
             <LeftComponent />
             <MainContent />
 

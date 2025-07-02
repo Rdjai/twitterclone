@@ -1,6 +1,6 @@
 import React from 'react'
 import logo from '../assets/logo.png'
-import { ThumbsUpIcon, MessageCircle } from 'lucide-react'
+import { ThumbsUpIcon, MessageCircle, Repeat, ChartNoAxesColumn, Bookmark, ShareIcon } from 'lucide-react'
 const tweetcomponent = () => {
     return (
         <div className="tweet-card">
@@ -18,12 +18,24 @@ const tweetcomponent = () => {
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea exercitationem earum commodi perspiciatis ut, facilis nam quaerat rem ex iure magni perferendis eveniet aut eius modi iusto porro placeat nostrum?
             </div>
             <div className="tweet-btn-component">
-                <div className="like-btn ">
-                    <ThumbsUpIcon />
-                </div>
-                <div className="comment-btn ">
+
+                <div className="comment-btn tweet-btn">
                     <MessageCircle />
                 </div>
+                <div className="repost-btn tweet-btn">
+                    <Repeat />
+                </div>
+                <div className="like-btn tweet-btn">
+                    <ThumbsUpIcon />
+                </div>
+                <div className="comment-btn tweet-btn ">
+                    <ChartNoAxesColumn />
+                </div>
+                <div className="save_share_btn tweet-btn">
+                    <Bookmark />
+                    <ShareIcon />
+                </div>
+
             </div>
         </div>
     )
