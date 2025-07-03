@@ -17,7 +17,7 @@ const HomePage = () => {
     }, [])
 
     return (
-        <div className='homepage bg-black'>
+        <div className='homepage bg-black text-white flex h-screen overflow-hidden'>
             <LeftComponent />
             <MainContent />
 

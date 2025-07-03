@@ -2,12 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-img {
-  width: 100%;
-  height: auto;
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
 
-:root {
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+
+/* img {
+  width: 100%;
+  height: auto;
+} */
+
+/* :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -20,9 +33,9 @@ img {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
+} */
 
-body {
+/* body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
@@ -30,8 +43,8 @@ body {
   box-sizing: border-box;
   background-color: #242424;
   color: rgba(255, 255, 255, 0.87);
-}
-
+} */
+/* 
 ul {
   list-style-type: none;
   justify-content: left;
@@ -45,8 +58,8 @@ ul {
 
 }
 
-.menuitems {
-  height: 60px;
+.menuitems { */
+/* height: 60px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -55,28 +68,28 @@ ul {
   padding-left: 40px;
   box-sizing: border-box;
   font-size: 18px;
-}
+} */
 
-li {
+/* li {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 20px;
 
-}
+} */
 
-
+/* 
 .leftcomponent {
-  /* border-right: 2px solid white; */
+  border-right: 2px solid white;
   height: 100vh;
   width: 25%;
   font-size: 18px;
-  /* max-height: 300px;  */
+  max-heigh/t: 300px; 
   overflow: hidden;
   overflow-y: auto;
   overflow-x: hidden;
-  /* background-color: #2a2a2a; */
-  /* padding-top: 20px; */
+  background-color: #2a2a2a;
+  padding-top: 20px;
   box-sizing: border-box;
   flex-shrink: 0;
 
@@ -101,10 +114,10 @@ li {
   font-size: 22px;
   font-weight: bold;
   font-family: "Roboto", sans-serif;
-  font-optical-sizing: auto;
-  /* padding-top: 22px;
+  font-optical-sizing: auto; */
+/* padding-top: 22px;
   padding-left: 40px; */
-  flex-shrink: 0;
+/* flex-shrink: 0;
 }
 
 .profilecard {
@@ -160,35 +173,35 @@ li {
 .post_btn:hover {
   background-color: #d0e7ff;
   transform: translateY(-2px);
-}
+} */
 
 /* main component css  */
-
+/* 
 .MainContent {
   width: 70%;
   padding: 30px;
   box-sizing: border-box;
   overflow-y: auto;
   height: 100vh;
-}
+} */
 
 /* home page css */
-
+/* 
 .homepage {
-  display: flex;
-  /* flex-wrap: wrap; */
-  /* gap: 20px; */
-  width: 100%;
-  height: 100vh;
-  /* padding: 30px; */
-  border-radius: 12px;
+  display: flex; */
+/* flex-wrap: wrap; */
+/* gap: 20px; */
+/* width: 100%;
+  height: 100vh; */
+/* padding: 30px; */
+/* border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   justify-content: space-evenly;
   box-sizing: border-box;
   overflow: hidden;
-}
+} */
 
-.column-item {
+/* .column-item {
   flex: 1;
   min-width: 280px;
   background-color: #3b3b3b;
@@ -204,10 +217,10 @@ li {
   max-height: 300px;
   overflow-y: auto;
   color: rgba(255, 255, 255, 0.8);
-}
+} */
 
 /* navnar css   */
-.column-item:hover {
+/* .column-item:hover {
   transform: translateY(-5px);
   box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
 }
@@ -215,135 +228,77 @@ li {
 .column-item h3 {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #d1d1d1;
-  /* Lighter color for heading */
-  margin-bottom: 10px;
-  text-align: center;
-  /* Ensure heading remains centered */
-  width: 100%;
+  color: #d1d1d1; */
+/* Lighter color for heading */
+/* margin-bottom: 10px;
+  text-align: center; */
+/* Ensure heading remains centered */
+/* width: 100%;
   flex-shrink: 0;
-}
+} */
 
-.column-item p {
+/* .column-item p {
   font-size: 1rem;
   line-height: 1.5;
   margin-bottom: 0;
-  flex-grow: 1;
-  /* No text-align here, as it's set on the parent .column-item to left */
-}
+  flex-grow: 1; */
+/* No text-align here, as it's set on the parent .column-item to left */
+/* } */
 
 /* navbar css */
-.navbar {
+/* .navbar {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: #333;
-  /* Darker background for navbar */
-  padding: 15px 0;
+  background-color: #333; */
+/* Darker background for navbar */
+/* padding: 15px 0;
   width: 100%;
   border-radius: 8px;
   margin-bottom: 20px;
-}
+} */
 
 /* Responsive adjustments for smaller screens */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   body {
-    flex-direction: column;
-    /* Stack leftcomponent and MainContent vertically */
-  }
+    flex-direction: column; */
+/* Stack leftcomponent and MainContent vertically */
+/* } */
 
-  .leftcomponent {
-    width: 100%;
-    /* Full width for sidebar on small screens */
-    height: auto;
-    /* Allow height to adjust */
-    max-height: 400px;
-    /* Limit height of sidebar for better mobile experience */
-  }
+/* .leftcomponent {
+    width: 100%; */
+/* Full width for sidebar on small screens */
+/* height: auto; */
+/* Allow height to adjust */
+/* max-height: 400px; */
+/* Limit height of sidebar for better mobile experience */
+/* } */
 
-  .MainContent {
-    width: 100%;
-    /* Full width for main content on small screens */
+/* .MainContent {
+    width: 100%; */
+/* Full width for main content on small screens */
+/* padding: 15px;
+    height: auto; */
+/* Adjust height based on content */
+/* } */
+
+/* .homepage {
     padding: 15px;
-    height: auto;
-    /* Adjust height based on content */
-  }
+    flex-direction: column; */
+/* Stack columns vertically on small screens */
+/* align-items: center;
+  } */
 
-  .homepage {
-    padding: 15px;
-    flex-direction: column;
-    /* Stack columns vertically on small screens */
-    align-items: center;
-  }
-
-  .column-item {
+/* .column-item {
     width: 100%;
     min-width: unset;
     max-height: 250px;
-  }
+  } */
 
-  .menuitems {
-    padding-left: 20px;
-    /* Reduce padding for smaller screens */
-  }
-}
+/* .menuitems {
+    padding-left: 20px; */
+/* Reduce padding for smaller screens */
+/* }/ */
+/* } */
 
-
-.tweetComponent {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 8px;
-  width: 30%;
-
-
-}
-
-.tweetComponent img {
-  border-radius: 90%;
-  margin: 12px;
-}
-
-.username {
-  display: flex;
-  font-size: 18px;
-}
-
-
-/* tweet component and card css  */
-.tweet-card {
-
-  flex: 1;
-  min-width: 280px;
-  background-color: #3b3b3b;
-  padding: 25px;
-  border-radius: 8px;
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  max-height: 300px;
-  overflow-y: auto;
-  color: rgba(255, 255, 255, 0.8);
-  margin-top: 12px;
-}
-
-.tweet-btn-component {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  gap: 10px;
-  margin-top: 12px;
-  width: 100%;
-}
-
-.tweet-btn {
-  cursor: pointer;
-}
-
-.tweet {
-  padding-left: 10%;
-}
+/* / */
