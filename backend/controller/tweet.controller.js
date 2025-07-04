@@ -98,8 +98,6 @@ const writeComment = async (req, res) => {
 
 const writereply = async (req, res) => {
     try {
-
-
         const tweetId = req.params.Id;
         const { text, commentId } = req.body;
         if (!text) return res.status(400).json({ error: "Reply text is required." });
@@ -119,6 +117,24 @@ const writereply = async (req, res) => {
     }
 }
 
+
+const hashTage = (req, res) => {
+    try {
+        const letestTweet = tweetModel.find({}).sort({ createdAt: -1 });
+        const { tag } = req.body;
+        if (!tag) return res.status(400).json({ error: "Hashtag tag is required." });
+
+        const hashtag = new hashTage({
+            tag: tag,
+            post: []
+        });
+        hashtag.save()
+        res.status(201).json({ message: "Hashtag created successfully", hashtag });
+    } catch (error) {
+        console.error("Error creating hashtag:", error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+}
 const feed = (req, res) => {
 
 }

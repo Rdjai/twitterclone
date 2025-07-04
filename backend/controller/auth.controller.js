@@ -6,11 +6,11 @@ const tweetModel = require("../models/tweet.model")
 const { setuser } = require('../service/jwt');
 
 const createAccount = async (req, res) => {
-    const { Name, userName, email, password } = req.body;
+    const { Name, email, password } = req.body;
     console.log(req.body);
 
     try {
-        if (!Name || !userName || !email || !password) {
+        if (!Name || !email || !password) {
             return res.status(400).json({
                 errorMsg: "Something went wrong",
                 error: "Please fill all fields properly"
@@ -22,12 +22,16 @@ const createAccount = async (req, res) => {
         if (checkemail) return res.status(400).json({
             error: `email already used ${email}`
         })
-        const checkusername = await userModel.findOne({
-            userName
-        });
-        if (checkusername) return res.status(400).json({
-            error: `user name already used ${userName}`
-        })
+        const Uname = Name.replace(/\s+/g, '').toLowerCase();
+        let userName = Uname;
+        let count = 0;
+        while (await userModel.findOne({ userName: userName })) {
+            count++;
+            userName = `${Uname}${count}`;
+        }
+        // if (checkusername) return res.status(400).json({
+        //     error: `user name already used ${userName}`
+        // })
         const hashedPassword = await bcrypt.hash(password, 10);
         const data = new userModel({
             Name,

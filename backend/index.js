@@ -3,12 +3,15 @@ const app = express();
 const PORT = 8000 || process.env.PORT
 const db = require("./config/db")
 require('dotenv').config()
+const cors = require('cors')
+
 const router = require("./routes/Route");
 const userModel = require("./models/user.model");
 
 //middlewere
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors())
 
 app.use("/api", router);
 app.use('/uploads', express.static('uploads'));
