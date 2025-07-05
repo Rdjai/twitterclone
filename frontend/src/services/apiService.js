@@ -28,21 +28,38 @@ export const loginUser = async (userData) => {
 
 export const Alltweet = async () => {
     try {
-        const response = await axios.get(`${base_url}/tweet/alltweet`, {
+        const response = await axios.get(`${base_url}/tweet/feed`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
         });
-        console.log("All Tweets Response:", response.data);
-        if (!response.data || !Array.isArray(response.data.tweets)) {
-            throw new Error("Invalid response format");
-        }
+        // console.log("All Tweets Response:", response.data);
+        // if (!response.data || !Array.isArray(response.data.tweets)) {
+        //     throw new Error("Invalid response format");
+        // }
 
         return response.data;
     } catch (error) {
         throw error.response?.data || { error: "Something went wrong" };
     }
 };
+
+export const postTweet = async (tweetData) => {
+    try {
+        if (!tweetData || typeof tweetData !== 'object') {
+            throw new Error("Invalid tweet data provided");
+        }
+        const response = await axios.post(`${base_url}/tweet/write`, tweetData, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        });
+        return response.data;
+    } catch (error) {
+        console.error("❌ Write Tweet Error:", error);
+        throw error.response?.data || { error: "Something went wrong" };
+    }
+}
 export const getUserProfile = async () => {
     try {
         if (!localStorage.getItem("token")) {

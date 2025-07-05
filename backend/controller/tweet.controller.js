@@ -135,14 +135,27 @@ const hashTage = (req, res) => {
         res.status(500).json({ error: "Internal server error" });
     }
 }
-const feed = (req, res) => {
+const feed = async (req, res) => {
+    try {
+        const alltweets = await tweetModel
+            .find({})
+            .sort({ createdAt: -1 })
+            .populate('author', 'userName profilePic Name');
 
-}
+        res.status(200).json({ alltweets });
+
+    } catch (error) {
+        console.error("Error fetching feed:", error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+};
+
 module.exports = {
     createTweetHandler,
     getAllTweets,
     deleteTweet,
     getSingleTweet,
     writeComment,
-    writereply
+    writereply,
+    feed
 }
