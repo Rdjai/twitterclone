@@ -36,18 +36,18 @@ const PostTweet = () => {
     useEffect(() => {
         const userProfile = async () => {
             const userData = await getUserProfile();
-            setuData(userData);
-            console.log("User Profile:", uData);
+            setuData(userData.user);
+
         }
         userProfile();
     }, [])
-
+    console.log("User Profile:", uData);
     return (
         <div className="bg-back flex border-t border-b m-0 p-4 items-start w-full text-white">
             {/* Profile Image */}
             <div className="mr-3">
                 <img
-                    src="https://pbs.twimg.com/profile_images/1834111746761777152/AnOcYg2N_400x400.jpg"
+                    src={uData ? uData.profilePic : "https://via.placeholder.com/150"}
                     alt="Profile"
                     className="h-[50px] w-[50px] rounded-full object-cover"
                 />

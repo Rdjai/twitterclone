@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
     House,
     Search,
@@ -17,12 +18,16 @@ const LeftComponent = () => {
 
             {/* Navigation Menu */}
             <ul className="space-y-4">
-                <MenuItem icon={<House />} label="Home" />
+                <Link to="/">
+                    <MenuItem icon={<House />} label="Home" />
+                </Link>
                 <MenuItem icon={<Search />} label="Explore" />
                 <MenuItem icon={<Bell />} label="Notification" />
                 <MenuItem icon={<Mail />} label="Messages" />
                 <MenuItem icon={<Users />} label="Communities" />
-                <MenuItem icon={<User />} label="Profile" />
+                <Link to="/profile">
+                    <MenuItem icon={<User />} label="Profile" />
+                </Link>
                 <MenuItem icon={<MoreHorizontal />} label="More" />
 
                 {/* Post Button */}

@@ -75,3 +75,20 @@ export const getUserProfile = async () => {
         throw error.response?.data || { error: "Something went wrong" };
     }
 }
+
+export const updateProfile = async (profileData) => {
+    try {
+        if (!profileData || typeof profileData !== 'object') {
+            throw new Error("Invalid profile data provided");
+        }
+        const response = await axios.post(`${base_url}/profile/update`, profileData, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        });
+        return response.data;
+    } catch (error) {
+        console.error("❌ Update Profile Error:", error);
+        throw error.response?.data || { error: "Something went wrong" };
+    }
+}   

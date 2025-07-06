@@ -12,6 +12,7 @@ const { getUserByUsername,
     getFollowersHandler,
     getFollowingHandler,
     getUserProfile,
+    updateUser,
 
 
 } = require("../controller/user.controller");
@@ -25,6 +26,7 @@ const upload = require("../middlewere/upload");
 router.post("/register", createAccount);
 router.post("/login", userLogin)
 router.get("/me", HandleResctricUser, myprofile)
+router.put("/profile/update", HandleResctricUser, updateUser)
 
 // user routes
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import LeftComponent from '../component/leftcomponent';
 import MainContent from '../component/mainContent';
 import RighComponent from '../component/RighComponent';
@@ -39,7 +39,7 @@ const HomePage = () => {
     return (
         <div className='homepage bg-black text-white flex h-screen overflow-hidden'>
             <LeftComponent />
-            <MainContent />
+            <Outlet />
             <RighComponent />
         </div>
     );
