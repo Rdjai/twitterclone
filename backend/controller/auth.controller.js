@@ -80,12 +80,12 @@ async function myprofile(req, res) {
         console.log("user req _id", req.user._id);
 
         const userinfo = await userModel.find(req.user._id);
-        const alltweet = await tweetModel.find({ author: req.user._id }).populate('author', 'userName').sort({ createdAt: -1 });
-        console.log(userinfo, alltweet);
-        return res.status(201).json({
+        const alltweet = await tweetModel.find({ author: req.user._id }).populate('author', 'userName profilePic Name').sort({ createdAt: -1 });
+        console.log("user profile endpoint", userinfo, alltweet);
+        return res.status(200).json({
             user: userinfo,
             tweets: alltweet
-        })
+        });
     } catch (error) {
         console.error("Error during registration:", error);
         res.status(500).json({ error: "Internal server error" });

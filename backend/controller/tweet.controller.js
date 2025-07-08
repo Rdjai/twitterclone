@@ -150,6 +150,28 @@ const feed = async (req, res) => {
     }
 };
 
+const likePost = async (req, res) => {
+    try {
+        const { postId } = req.body;
+        const userID = req.user._id;
+
+        const tweet = await tweetModel.findById(postId);
+        if (tweet.like.includes(userID)) {
+            tweet.like = tweet.like.filter(id => id.toString() !== userID.toString());
+            await tweet.save();
+            return res.status(200).json({ msg: "Tweet unliked successfully", tweet });
+        }
+        tweet.like.push(userID);
+        await tweet.save();
+        res.status(200).json({ msg: "Tweet liked successfully", tweet });
+        if (!tweet) return res.status(404).json({ msg: "Tweet not found" });
+
+
+    } catch (error) {
+
+    }
+}
+
 module.exports = {
     createTweetHandler,
     getAllTweets,
@@ -157,5 +179,6 @@ module.exports = {
     getSingleTweet,
     writeComment,
     writereply,
-    feed
+    feed,
+    likePost
 }

@@ -36,7 +36,7 @@ const PostTweet = () => {
     useEffect(() => {
         const userProfile = async () => {
             const userData = await getUserProfile();
-            setuData(userData.user);
+            setuData(userData);
 
         }
         userProfile();
@@ -47,7 +47,8 @@ const PostTweet = () => {
             {/* Profile Image */}
             <div className="mr-3">
                 <img
-                    src={uData ? uData.profilePic : "https://via.placeholder.com/150"}
+                    src={uData && uData[0] ? `http://localhost:8000/${uData[0].profile_image}` : "/default-profile.png"}
+
                     alt="Profile"
                     className="h-[50px] w-[50px] rounded-full object-cover"
                 />

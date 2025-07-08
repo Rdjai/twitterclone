@@ -76,19 +76,44 @@ export const getUserProfile = async () => {
     }
 }
 
-export const updateProfile = async (profileData) => {
+export const updateProfile = async (formData) => {
     try {
-        if (!profileData || typeof profileData !== 'object') {
-            throw new Error("Invalid profile data provided");
-        }
-        const response = await axios.post(`${base_url}/profile/update`, profileData, {
+        const res = await axios.put(`${base_url}/profile/update`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                Authorization: `Bearer ${localStorage.getItem("token")}`
+            }
+        });
+        return res.data;
+    } catch (error) {
+        console.error("Upload error:", error);
+        return { error: error.response?.data?.message || "Upload failed" };
+    }
+};
+
+export const likePost = async (postId) => {
+    try {
+        const response = await axios.post(`${base_url}/tweet/like`, { postId }, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
         });
         return response.data;
     } catch (error) {
-        console.error("❌ Update Profile Error:", error);
         throw error.response?.data || { error: "Something went wrong" };
     }
-}   
+}
+
+export const followUser = async (userId) => {
+    try {
+        const response = await axios.post(`${base_url}/user/follow`, { Id: userId }, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        });
+        return response.data;
+    } catch (error) {
+        throw error.response?.data || { error: "Something went wrong" };
+    }
+}
+

@@ -85,25 +85,38 @@ async function getUserById(req, res) {
     }
 
 }
-
 const updateUser = async (req, res) => {
     try {
-        const { Name, bio, profilePic } = req.body;
-        const data = await userModel.findByIdAndUpdate(
-            req.params.id,
-            {
-                Name,
-                bio,
-                profilePic
+        const { Name, userName, bio } = req.body;
+        const profilePic = req.file ? req.file.path : null;
 
-            },
-            { new: true }
-        ).select('-password');
-        res.json(data);
+        if (!Name || !userName || !bio) {
+            return res.status(400).json({ msg: 'Please provide Name, userName, and bio' });
+        }
+
+        const user = await userModel.findById(req.user.id);
+        if (!user) return res.status(404).json({ msg: 'User not found' });
+
+        user.Name = Name;
+        user.userName = userName;
+        user.bio = bio;
+
+        if (profilePic) {
+            user.profilePic = profilePic;
+        }
+
+        await user.save();
+
+        const updatedUser = user.toObject();
+        delete updatedUser.password;
+
+        res.json({ msg: 'User updated successfully', user: updatedUser });
     } catch (error) {
-        res.status(500).json({ msg: 'Server error' });
+        console.error("Error updating user:", error);
+        res.status(500).json({ msg: 'Server error', error: error.message });
     }
-}
+};
+
 
 
 //follow user 
