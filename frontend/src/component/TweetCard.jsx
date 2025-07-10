@@ -1,9 +1,11 @@
 import React from 'react';
 import { likePost } from '../services/apiService';
-const TweetCard = ({ key, name, username, avatar, content, image, time }) => {
+import { Heart } from 'lucide-react'
+const TweetCard = ({ tweetId, name, username, avatar, content, image, time, like }) => {
     const likepost = async () => {
         try {
-            const res = await likePost(key);
+            console.log("Liking post with key:", tweetId);
+            const res = await likePost(tweetId);
             console.log("Fetched Tweets:", res);
             if (res && res.alltweets) {
                 setAlltweet(res.alltweets);
@@ -50,7 +52,10 @@ const TweetCard = ({ key, name, username, avatar, content, image, time }) => {
                     <div className="mt-3 flex gap-6 text-gray-500 text-sm">
                         <button className="hover:text-blue-500">Reply</button>
                         <button className="hover:text-green-500">Retweet</button>
-                        <button className="hover:text-pink-500" onClick={likepost()}>Like</button>
+                        <button className="hover:text-pink-500" onClick={likepost}>
+                            <Heart />
+                            {like}
+                        </button>
                         <button className="hover:text-gray-400">Share</button>
                     </div>
                 </div>

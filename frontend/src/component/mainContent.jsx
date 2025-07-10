@@ -1,37 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Navbar from './Navbaar';
 import TweetCard from './TweetCard';
 import TweetPost from './posttweet';
-import { Alltweet, likePost } from '../services/apiService';
+import { Alltweet } from '../services/apiService';
+import { useDispatch, useSelector } from 'react-redux';
+import { setTweets } from '../redux/features/tweets/tweetSlice';
+
 
 const MainContent = () => {
-    const [alltweet, setAlltweet] = useState([]);
+    const dispatch = useDispatch();
+    const alltweet = useSelector((state) => state.tweets.alltweets);
 
-    const Fetchdata = async () => {
+    const fetchTweets = async () => {
         try {
             const res = await Alltweet();
-            console.log("All Tweets:", res);
-            // if (!res || !Array.isArray(res.data)) {
-            //     throw new Error("Invalid response format");
-            // }
-            return res;
+            dispatch(setTweets(res.alltweets));
         } catch (error) {
             console.error("Error fetching tweets:", error);
-            return [];
         }
-    }
-
+    };
 
     useEffect(() => {
-
-
-        const fetchTweets = async () => {
-            const tweets = await Fetchdata();
-            setAlltweet(tweets.alltweets);
-        };
         fetchTweets();
     }, []);
-    console.log("All Tweets in MainContent:", alltweet);
+
     return (
         <div className='m-0 p-0 mt-3 w-full overflow-scroll overflow-y-scroll h-screen scrollbar-hide mb-3'>
             <Navbar />
@@ -40,6 +32,7 @@ const MainContent = () => {
                 {alltweet.length > 0 ? (
                     alltweet.map((tweet, index) => (
                         <TweetCard
+                            tweetId={tweet._id || index}
                             key={tweet._id || index}
                             name={tweet.author?.Name || "Unknown"}
                             username={tweet.author?.userName || "unknown"}
@@ -47,9 +40,9 @@ const MainContent = () => {
                             content={tweet.text}
                             image={tweet.mediaUrl ? `http://localhost:8000${tweet.mediaUrl}` : null}
                             time={new Date(tweet.createdAt).toLocaleTimeString()}
-                            like={tweet.likes || 0}
-                        />
+                            like={Array.isArray(tweet.like) ? tweet.like.length : 0}
 
+                        />
                     ))
                 ) : (
                     <p className="text-white text-center">No tweets found.</p>

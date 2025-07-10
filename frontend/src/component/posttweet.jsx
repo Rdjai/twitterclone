@@ -57,6 +57,7 @@ const PostTweet = () => {
             {/* Tweet Content */}
             <div className="flex-1">
                 <textarea
+                    rows={5}
                     value={tweet}
                     onChange={(e) => setTweet(e.target.value)}
                     className="w-full h-[100px] bg-transparent text-white outline-none p-2 text-lg resize-none placeholder:text-gray-500"

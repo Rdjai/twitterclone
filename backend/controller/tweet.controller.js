@@ -154,6 +154,7 @@ const likePost = async (req, res) => {
     try {
         const { postId } = req.body;
         const userID = req.user._id;
+        console.log("User ID:", userID, postId);
 
         const tweet = await tweetModel.findById(postId);
         if (tweet.like.includes(userID)) {
@@ -166,6 +167,15 @@ const likePost = async (req, res) => {
         res.status(200).json({ msg: "Tweet liked successfully", tweet });
         if (!tweet) return res.status(404).json({ msg: "Tweet not found" });
 
+
+    } catch (error) {
+        console.error("❌ Error liking post:", error.message);
+        res.status(500).json({ msg: "Internal Server Error" });
+    }
+}
+const retweet = async (req, res) => {
+    try {
+        const { postId } = req.body;
 
     } catch (error) {
 

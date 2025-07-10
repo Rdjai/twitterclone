@@ -93,12 +93,12 @@ export const updateProfile = async (formData) => {
 
 export const likePost = async (postId) => {
     try {
-        const response = await axios.post(`${base_url}/tweet/like`, { postId }, {
+        const response = await axios.put(`${base_url}/tweet/like`, { postId }, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
         });
-        return response.data;
+        return response;
     } catch (error) {
         throw error.response?.data || { error: "Something went wrong" };
     }
