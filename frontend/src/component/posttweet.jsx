@@ -1,14 +1,15 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Image, ImagePlay, List, SmilePlus } from 'lucide-react';
 import { postTweet, getUserProfile } from '../services/apiService';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { addTweet } from '../redux/features/tweets/tweetSlice';
+import { setUserInfo } from '../redux/features/userSlice';
 const PostTweet = () => {
     const [tweet, setTweet] = useState('');
     const [file, setFile] = useState(null);
-    const [uData, setuData] = useState(null); // To store user data
-    const fileInputRef = useRef(null); // To trigger input click programmatically
-
-
+    const fileInputRef = useRef(null);
+    const dispatch = useDispatch();
+    const { userinfo } = useSelector((state) => state.user);
     const handlePost = async () => {
         if (tweet.trim() === '' && !file) return;
 
@@ -19,7 +20,9 @@ const PostTweet = () => {
         try {
             const res = await postTweet(formData);
             console.log('✅ Tweet posted:', res);
-            alert(" tweet posted successfully");
+            if (res && res.tweet) {
+                dispatch(addTweet(res.tweet));
+            }
             setTweet('');
             setFile(null);
         } catch (error) {
@@ -36,18 +39,19 @@ const PostTweet = () => {
     useEffect(() => {
         const userProfile = async () => {
             const userData = await getUserProfile();
-            setuData(userData);
+            dispatch(setUserInfo(userData));
 
         }
         userProfile();
     }, [])
-    console.log("User Profile:", uData);
+
+    console.log("User Profile: use selector", userinfo?.user[0].profilePic);
     return (
         <div className="bg-back flex border-t border-b m-0 p-4 items-start w-full text-white">
             {/* Profile Image */}
             <div className="mr-3">
                 <img
-                    src={uData && uData[0] ? `http://localhost:8000/${uData[0].profile_image}` : "/default-profile.png"}
+                    src={userinfo && userinfo?.user[0] ? `http://localhost:8000/${userinfo?.user[0].profilePic}` : "/default-profile.png"}
 
                     alt="Profile"
                     className="h-[50px] w-[50px] rounded-full object-cover"

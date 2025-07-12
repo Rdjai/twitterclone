@@ -1,14 +1,19 @@
 import React from 'react';
 import { likePost } from '../services/apiService';
+import { useSelector, useDispatch } from 'react-redux';
 import { Heart } from 'lucide-react'
+import { likePostSlice } from '../redux/features/tweets/tweetSlice';
 const TweetCard = ({ tweetId, name, username, avatar, content, image, time, like }) => {
+    const dispatch = useDispatch();
+    const { } = useSelector((state) => state.tweets);
     const likepost = async () => {
         try {
             console.log("Liking post with key:", tweetId);
             const res = await likePost(tweetId);
+            dispatch(ad)
             console.log("Fetched Tweets:", res);
             if (res && res.alltweets) {
-                setAlltweet(res.alltweets);
+                likePostSlice(res.alltweets);
             } else {
                 console.error("Invalid response format:", res);
             }

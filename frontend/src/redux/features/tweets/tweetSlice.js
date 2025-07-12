@@ -28,8 +28,16 @@ const tweetSlice = createSlice({
         setLoading: (state, action) => {
             state.loading = action.payload;
         },
+        likePostSlice: (state, action) => {
+            const { userId, tweetId } = action.payload;
+            const tweet = state.tweets.find(tweet => tweet._id === tweetId);
+            if (!tweet) return;
+            const index = tweet.like.indexOf(userId);
+            if (index > -1) tweet.like.splice(index, 1);
+            else tweet.like.push(userId);
+        }
     }
 });
 
-export const { setTweets, addTweet, updateTweet, deleteTweet, setLoading } = tweetSlice.actions;
+export const { setTweets, addTweet, updateTweet, deleteTweet, setLoading, likePostSlice } = tweetSlice.actions;
 export default tweetSlice.reducer;

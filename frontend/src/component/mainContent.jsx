@@ -9,7 +9,8 @@ import { setTweets } from '../redux/features/tweets/tweetSlice';
 
 const MainContent = () => {
     const dispatch = useDispatch();
-    const alltweet = useSelector((state) => state.tweets.alltweets);
+    const alltweet = useSelector((state) => state.tweets);
+    console.log("All tweets: main component", alltweet);
 
     const fetchTweets = async () => {
         try {
@@ -29,8 +30,8 @@ const MainContent = () => {
             <Navbar />
             <TweetPost />
             <div className="min-h-screen bg-gray-100 dark:bg-black py-6 px-4">
-                {alltweet.length > 0 ? (
-                    alltweet.map((tweet, index) => (
+                {alltweet.tweets.length > 0 ? (
+                    alltweet.tweets.map((tweet, index) => (
                         <TweetCard
                             tweetId={tweet._id || index}
                             key={tweet._id || index}
