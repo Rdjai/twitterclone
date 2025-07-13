@@ -10,10 +10,11 @@ const TweetCard = ({ tweetId, name, username, avatar, content, image, time, like
         try {
             console.log("Liking post with key:", tweetId);
             const res = await likePost(tweetId);
+            console.log("Fetched Tweets tweetcard:", res);
+
             dispatch(ad)
-            console.log("Fetched Tweets:", res);
             if (res && res.alltweets) {
-                likePostSlice(res.alltweets);
+                likePostSlice(res.data.tweet._id,);
             } else {
                 console.error("Invalid response format:", res);
             }

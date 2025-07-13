@@ -31,10 +31,14 @@ const tweetSlice = createSlice({
         likePostSlice: (state, action) => {
             const { userId, tweetId } = action.payload;
             const tweet = state.tweets.find(tweet => tweet._id === tweetId);
-            if (!tweet) return;
+            if (!tweet || !Array.isArray(tweet.like)) return;
             const index = tweet.like.indexOf(userId);
-            if (index > -1) tweet.like.splice(index, 1);
-            else tweet.like.push(userId);
+            if (index > -1) {
+                tweet.like.splice(index, 1);
+            } else {
+                tweet.like.push(userId);
+            }
+
         }
     }
 });
