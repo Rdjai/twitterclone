@@ -1,3 +1,4 @@
+const retweetModel = require("../models/retweet.model.js");
 const tweetModel = require("../models/tweet.model.js");
 const userModel = require("../models/user.model.js");
 
@@ -176,9 +177,25 @@ const likePost = async (req, res) => {
 const retweet = async (req, res) => {
     try {
         const { postId } = req.body;
+        const userID = req.user._id;
+        console.log("User ID:", userID, postId);
+        const postownerId = await tweetModel.findById(postId).select("author");
+        if (postownerId.author.toString() === userID.toString()) {
+            return res.status(403).json({ msg: "You cannot retweet your own tweet" });
+        }
+        const retweetPost = new retweetModel(
+            {
+                postownerId,
+                postId,
+                userID
+            }
+        )
+        await retweetPost.save();
+        res.status(201).json({ msg: "Retweeted successfully", retweetPost });
 
     } catch (error) {
-
+        console.error("❌ Error retweeting post:", error.message);
+        res.status(500).json({ msg: "Internal Server Error" });
     }
 }
 
