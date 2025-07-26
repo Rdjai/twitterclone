@@ -1,75 +1,77 @@
 # 🚀 Devspire – Where Coders Connect, Collaborate & Create
 
-![Devspire Banner](./banner.png)
+Devspire is a full-stack social collaboration platform designed **for developers and tech enthusiasts** to share knowledge, solve bugs, stream live coding sessions, and grow together as a community. Think of it as the **go-to hub for coders**, with features tailored for students, professionals, and open-source contributors.
 
-![License](https://img.shields.io/badge/license-MIT-green)
-![React](https://img.shields.io/badge/Frontend-React-blue)
-![Node.js](https://img.shields.io/badge/Backend-Node.js-yellow)
-![MongoDB](https://img.shields.io/badge/Database-MongoDB-brightgreen)
-![Contributions Welcome](https://img.shields.io/badge/Contributions-Welcome-orange)
-
-**Devspire** is a powerful community-driven platform where developers can:
-- 🌐 Share tweets-like tech posts
-- 💬 Debug bugs together
-- 🎙 Join voice/video group rooms
-- 🎥 Stream live code sessions
-- 💡 Get AI help on projects
+> 🌱 This project is currently in active development. Some advanced features (like video streaming and AI integration) are planned and coming soon!
 
 ---
 
 ## 📌 Table of Contents
 
-- [✨ Features](#-features)
-- [🧩 Tech Stack](#-tech-stack)
-- [📁 Project Structure](#-project-structure)
-- [⚙️ How to Run](#️-how-to-run)
-- [🔐 Authentication & Security](#-authentication--security)
-- [🛠️ Backend Details](#️-backend-details)
-- [🎨 Frontend Overview](#-frontend-overview)
-- [🌱 Future Plans](#-future-plans)
-- [🤝 Contribution Guide](#-contribution-guide)
-- [📄 License](#-license)
+- [Demo](#-demo)
+- [Features](#-features)
+- [Tech Stack](#-tech-stack)
+- [Folder Structure](#-folder-structure)
+- [Installation](#-installation)
+- [API Endpoints](#-api-endpoints)
+- [Future Enhancements](#-future-enhancements)
+- [Contributing](#-contributing)
+- [License](#-license)
+
+---
+
+## 🎥 Demo
+
+> A demo video or screenshots will be added once core features are fully implemented.
 
 ---
 
 ## ✨ Features
 
-### 🧑‍💻 Developer-Focused Social Feed
-- Post short updates, errors, or solutions
-- Like, comment, and reply on posts
+### ✅ Implemented
 
-### 🧠 AI Debug Helper (Coming Soon)
-- Paste error logs and get AI-suggested fixes
+- 📝 Tweet-style posts (called *sparks*)
+- ❤️ Like/Unlike a post
+- 👤 User authentication (JWT-based)
+- 🖼️ Profile picture & name display
+- 📁 User profile management
+- 🧵 Comment on posts
+- 🔍 Search users
+- 🗂️ Redux for global state
+- 🧑‍💻 Protected routes with `PrivateRoute`
 
-### 🎙 Group Voice Chat
-- Dev rooms to collaborate using real-time audio
+### 🚧 Upcoming Features (Devspire v2)
 
-### 🎥 Live Streaming
-- Integrated live sessions for tutorials, bug solving, or team discussions
-
-### 🔍 Bug Share
-- Share your bug with a screenshot or code snippet
-- Get help instantly from others
-
-### 👥 Follow & Discover
-- Follow devs you like
-- Discover trending bugs, solutions, or tech talks
-
----
-
-## 🧩 Tech Stack
-
-| Layer     | Tech Used                         |
-|----------|------------------------------------|
-| Frontend | React, Redux Toolkit, Tailwind CSS |
-| Backend  | Node.js, Express.js                |
-| Database | MongoDB (Mongoose)                 |
-| Auth     | JWT, bcrypt                        |
-| Realtime | Socket.io (for voice/chat)         |
-| Media    | Firebase / Cloudinary (for images) |
-| AI Help  | GPT API Integration                |
+- 📹 **Live video streaming for coding sessions**
+- 📞 **Group voice chat rooms for collaboration**
+- 💬 Real-time chat using Socket.IO
+- 🧠 **AI-powered bug detection & resolution assistant**
+- 🧑‍🔧 Code collaboration space (like Replit)
+- 🎯 Project matchmaking between coders
+- 🔔 Notifications & mentions system
 
 ---
 
-## 📁 Project Structure
+## 💻 Tech Stack
+
+### Frontend (React + Redux + TailwindCSS)
+
+- React Router v6
+- Redux Toolkit
+- Axios
+- TailwindCSS for styling
+- React Icons
+
+### Backend (Node.js + Express)
+
+- MongoDB with Mongoose
+- JWT for auth
+- Bcrypt for password hashing
+- Multer for file uploads (profile pics)
+
+---
+
+## 📂 Folder Structure
+
+### Frontend (`client/`)
 
