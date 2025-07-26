@@ -33,6 +33,50 @@ A fully functional Twitter-like social media application built using the **MERN 
 - Multer (for profile image upload)
 - bcrypt (for password hashing)
 
+root
+│
+├── backend/
+│ ├── controllers/
+│ ├── models/
+│ ├── routes/
+│ ├── middleware/
+│ └── server.js
+│
+└── client/
+├── src/
+├── components/
+├── features/ (Redux slices)
+├── pages/
+├── App.jsx
+└── main.jsx
+
+yaml
+Copy
+Edit
+
+
+
+---
+
+## 🛠️ Installation & Setup
+
+### Prerequisites
+- Node.js & npm
+- MongoDB (local or cloud)
+- Git
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/your-username/twitter-clone.git
+cd twitter-clone
+
+cd backend
+npm install
+# Add your MongoDB URI and JWT_SECRET in .env
+npm start
+
+
+
 ---
 
 ## 📂 Folder Structure
