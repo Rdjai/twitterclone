@@ -1,70 +1,39 @@
-# 🚀 Devspire – Where Coders Connect, Collaborate & Create
+# 🐦 Twitter Clone (MERN Stack)
 
-Devspire is a full-stack social collaboration platform designed **for developers and tech enthusiasts** to share knowledge, solve bugs, stream live coding sessions, and grow together as a community. Think of it as the **go-to hub for coders**, with features tailored for students, professionals, and open-source contributors.
-
-> 🌱 This project is currently in active development. Some advanced features (like video streaming and AI integration) are planned and coming soon!
+A fully functional Twitter-like social media application built using the **MERN stack** (MongoDB, Express.js, React.js, Node.js). Users can create accounts, post tweets, like posts, and explore content — all in real-time with a responsive UI.
 
 ---
 
-## 📌 Table of Contents
+## 🚀 Features
 
-- [Demo](#-demo)
-- [Features](#-features)
-- [Tech Stack](#-tech-stack)
-- [Folder Structure](#-folder-structure)
-- [Installation](#-installation)
-- [API Endpoints](#-api-endpoints)
-- [Future Enhancements](#-future-enhancements)
-- [Contributing](#-contributing)
-- [License](#-license)
+- 🔐 User Authentication (JWT based)
+- 📝 Create and Delete Tweets
+- ❤️ Like and Unlike Tweets
+- 👤 View Other Users’ Tweets
+- 🖼️ User Profile with Bio and Picture
+- 📱 Fully Responsive Design
+- ⚡ Fast and Minimal UI
 
 ---
 
-## 🎥 Demo
+## 🧰 Tech Stack
 
-> A demo video or screenshots will be added once core features are fully implemented.
-
----
-
-## ✨ Features
-
-### ✅ Implemented
-
-- 📝 Tweet-style posts (called *sparks*)
-- ❤️ Like/Unlike a post
-- 👤 User authentication (JWT-based)
-- 🖼️ Profile picture & name display
-- 📁 User profile management
-- 🧵 Comment on posts
-- 🔍 Search users
-- 🗂️ Redux for global state
-- 🧑‍💻 Protected routes with `PrivateRoute`
-
-### 🚧 Upcoming Features ( v2)
-
- 🚧 under construction
----
-
-## 💻 Tech Stack
-
-### Frontend (React + Redux + TailwindCSS)
-
-- React Router v6
-- Redux Toolkit
+### 💻 Frontend
+- React.js
+- Redux Toolkit (for state management)
+- React Router DOM
 - Axios
-- TailwindCSS for styling
-- React Icons
+- Tailwind CSS
 
-### Backend (Node.js + Express)
-
+### 🌐 Backend
+- Node.js
+- Express.js
 - MongoDB with Mongoose
-- JWT for auth
-- Bcrypt for password hashing
-- Multer for file uploads (profile pics)
+- JWT (JSON Web Token)
+- Multer (for profile image upload)
+- bcrypt (for password hashing)
 
 ---
 
 ## 📂 Folder Structure
-
-### Frontend (`client/`)
 
