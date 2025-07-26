@@ -40,16 +40,9 @@ Devspire is a full-stack social collaboration platform designed **for developers
 - 🗂️ Redux for global state
 - 🧑‍💻 Protected routes with `PrivateRoute`
 
-### 🚧 Upcoming Features (Devspire v2)
+### 🚧 Upcoming Features ( v2)
 
-- 📹 **Live video streaming for coding sessions**
-- 📞 **Group voice chat rooms for collaboration**
-- 💬 Real-time chat using Socket.IO
-- 🧠 **AI-powered bug detection & resolution assistant**
-- 🧑‍🔧 Code collaboration space (like Replit)
-- 🎯 Project matchmaking between coders
-- 🔔 Notifications & mentions system
-
+ 🚧 under construction
 ---
 
 ## 💻 Tech Stack
